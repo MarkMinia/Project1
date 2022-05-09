@@ -1,1 +1,1 @@
-# Project1
+# SQL & Database Basics: Final Project
