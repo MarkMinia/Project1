@@ -1,6 +1,7 @@
 # SQL & Database Basics: Final Project
 
 ##### Before a band releases a new record, Drop Table Records will work to promote the band and get fans excited for the new record. Write a query that shows bands & their respective albums’ release date in descending order.
+[1.1 Table](https://github.com/MarkMinia/Project1/blob/main/1.1%20Table.csv)
 ```
 select b.bandname as 'Rockin Rock Bands', a.albumname as 'Awesome Album Names', a.releasedate as 'Released to the World'
 from band_db.band as b
@@ -9,6 +10,7 @@ on b.idband = a.idband
 order by a.releasedate desc
 ```
 ##### Drop Table Records also sends bands to play at different venues or events. Some venues request bands that feature certain instruments. Write a query that shows all of the players that utilize drums along with the bands that they are a part of. You should only have one column that shows the full player name
+[1.2 Table](https://github.com/MarkMinia/Project1/blob/main/1.2%20Table.csv)
 ```
 select b.bandname as 'Rockin Rock Band', concat(p.pfname, ' ' ,p.plname) as 'Band Player', i.instrument as 'Musical Weapon'
 from band_db.instrument as i
@@ -20,6 +22,7 @@ where instrument = 'drums'
 order by concat(p.pfname, ' ' ,p.plname)
 ```
 ##### It is important that Drop Table Records has a diversity of different bands signed to its label. We want many artists who represent different styles of music. One way we determine the diversity in music is by looking at how many bands feature a certain instrument. Write a query that describes the number of instruments used by each band.
+[1.3 Table](https://github.com/MarkMinia/Project1/blob/main/1.3%20Table.csv)
 ```
 select b.bandname as 'Rockin Rock Band', count(i.instrument) as 'Musical Weapons'
 from band_db.instrument as i
@@ -31,6 +34,7 @@ group by b.idband
 order by count(i.instrument) desc
 ```
 ##### Write a query that lists the most popular instrument amongst the players.
+[1.4 Table](https://github.com/MarkMinia/Project1/blob/main/1.4%20Table.csv)
 ```
 select (i.instrument) as 'Musical Weapon', count(p.instid) as 'Number of Players'
 from band_db.instrument as i
@@ -40,18 +44,23 @@ group by i.instrument
 order by count(p.instid) desc
 ```
 ##### Write a query that lists any albums that have a missing name and/or missing release dates. How should we handle these?
+[1.5 Table](https://github.com/MarkMinia/Project1/blob/main/1.5%20Table.csv)
 ```
 select ifnull(idalbum, 'N/A') as idalbum, ifnull(idband, 'N/A') as idband, ifnull(albumname, 'N/A') as albumname, ifnull(releasedate, 'N/A') as releasedate
 from band_db.album where albumname is null or releasedate is null 
 ```
 ##### We need to add more bands to the band table. Here’s a list of the bands we’d like to add: 
 <img src="https://github.com/MarkMinia/Project1/blob/main/Band%20List.PNG" width=15% height=15%></dl>
+
+[2.1 Table](https://github.com/MarkMinia/Project1/blob/main/2.1%20Table.csv)
 ```
 insert into band_db.band (idband, aid, bandname)
 values (22, 1, 'Weezer'), (23, 1, 'TLC'), (24, 1, 'Paramore'), (25, 1, 'Blackpink'), (26, 1, 'Vampire Weekend')
 ```
 ##### Using the Player table, add the following values
 <img src="https://github.com/MarkMinia/Project1/blob/main/Player%20List.PNG" width=50% height=50%></dl>
+
+[2.3 Table](https://github.com/MarkMinia/Project1/blob/main/2.3%20Table.csv)
 ```
 Insert into band_db.player (idplayer, instid, idband, pfname, plname, homecity, homestate)
 values (30, 3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
@@ -73,16 +82,21 @@ values (30, 3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
 ```
 ##### Drop Table Records has signed a contract with a new venue! A new venue should be added to the venue table.
 <img src="https://github.com/MarkMinia/Project1/blob/main/Venue%20List.PNG" width=25% height=25%></dl>
+
+[2.4 Table](https://github.com/MarkMinia/Project1/blob/main/2.4%20Table.csv)
 ```
 insert into band_db.venue (idvenue, vname, city, state, zipcode, seats)
 values(12, 'Twin City Rock House', 'Minneapolis', 'MN', 55414, 2000)
 ```
 ##### Which state has the largest amount of seating available (regardless of the number of venues at the state)?
+[2.5 Table](https://github.com/MarkMinia/Project1/blob/main/2.5%20Table.csv)
 ```
 select state, seats from band_db.venue where seats = (select max(seats) from band_db.venue)
 ```
 ##### Using the Gig table, add the following information
 <img src="https://github.com/MarkMinia/Project1/blob/main/Gig%20List.PNG" width=50% height=50%></dl>
+
+[3.2 Table](https://github.com/MarkMinia/Project1/blob/main/3.2%20Table.csv)
 ```
 insert into band_db.gig (gigid, idvenue, idband, gigdate, numattendees)
 values (1, 4, 2, '2022-05-05', 19000),
@@ -92,6 +106,7 @@ values (1, 4, 2, '2022-05-05', 19000),
 select * from band_db.gig
 ```
 ##### Are any of the venues oversold?
+[3.3 Table](https://github.com/MarkMinia/Project1/blob/main/3.3%20Table.csv)
 ```
 Select v.vname, v.city, v.state, v.seats, g.numattendees
 from band_db.venue as v
@@ -100,14 +115,17 @@ on v.idvenue = g.idvenue
 where seats < numattendees
 ```
 ##### We just got word that Vampire Weekend can expect 1,750 guests. Write a query to update the table accordingly.
+[3.4 Table](https://github.com/MarkMinia/Project1/blob/main/3.4%20Table.csv)
 ```
 update band_db.gig set numattendees = 1750 where gigid = 2
 ```
 ##### We just got an update that the expected number of attendees at the River Club for Weezer will only have 125 guests. Write a query to update the table accordingly.
+[3.5 Table](https://github.com/MarkMinia/Project1/blob/main/3.5%20Table.csv)
 ```
 update band_db.gig set numattendees = 125 where gigid = 4
 ```
 ##### Create a view (called vw_giginfo) that will show the band, the dates they will play, the venue they will play at, the number of attendees, and the venue capacity. For this view, also create a column that describes what percentage of the venue capacity was utilized.
+[3.6 Table](https://github.com/MarkMinia/Project1/blob/main/3.6%20Table.csv)
 ```
 create view band_db.rock_n_roll as
 select b.bandname as 'Rockin Rock Band', g.gigdate as 'Showtime Baby', g.numattendees as 'Adoring Fans', 
@@ -120,6 +138,7 @@ on g.idvenue = v.idvenue
 select * from band_db.rock_n_roll
 ```
 ##### Create a stored procedure that lists all of the venues that can handle more than 10,000 guests.
+[4.1 Table](https://github.com/MarkMinia/Project1/blob/main/4.1%20Table.csv)
 ```
 CREATE PROCEDURE `10000_Venue`()
 BEGIN
@@ -129,6 +148,7 @@ END;
 call band_db.10000_venue ()
 ```
 ##### Create a stored procedure that lists all of the players that come from a specific state. We want to see (once we run this stored procedure), what bands they are a part of, their full name (in one column), and the state they are from.
+[4.2 Table](https://github.com/MarkMinia/Project1/blob/main/4.2%20Table.csv)
 ```
 Select b.bandname as 'Rockin Rock Band', concat(p.pfname, ' ',(ifnull(p.plname, ' '))) as 'Player Name', p.homecity, p.homestate 
 from band_db.band as b
