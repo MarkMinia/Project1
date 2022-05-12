@@ -58,7 +58,7 @@ insert into band_db.band (idband, aid, bandname)
 values (22, 1, 'Weezer'), (23, 1, 'TLC'), (24, 1, 'Paramore'), (25, 1, 'Blackpink'), (26, 1, 'Vampire Weekend')
 ```
 ##### Using the Player table, add the following values
-<img src="https://github.com/MarkMinia/Project1/blob/main/Assignment%20Images/Player%20List.PNG" width=50% height=50%></dl>
+![Alt text]"https://github.com/MarkMinia/Project1/blob/main/Assignment%20Images/Player%20List.PNG" width=50% height=50%></dl>
 
 [2.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.3%20Table.csv)
 ```sql
