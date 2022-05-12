@@ -50,7 +50,7 @@ select ifnull(idalbum, 'N/A') as idalbum, ifnull(idband, 'N/A') as idband, ifnul
 from band_db.album where albumname is null or releasedate is null 
 ```
 ##### We need to add more bands to the band table. Here’s a list of the bands we’d like to add: 
-<img src="https://github.com/MarkMinia/Project1/blob/main/Assignment%20Images/Band%20List.PNG" width="15%" height="15%" /></dl>
+<img src="https://github.com/MarkMinia/Project1/blob/main/Assignment%20Images/Band%20List.PNG" width="15%" height="15%" />
 
 [2.1 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.1%20Table.csv)
 ```sql
