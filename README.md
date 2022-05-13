@@ -32,7 +32,7 @@ on p.idband = b.idband
 where instrument = 'drums'
 order by concat(p.pfname, ' ' ,p.plname)
 ```
-##### 1.3)It is important that Drop Table Records has a diversity of different bands signed to its label. We want many artists who represent different styles of music. One way we determine the diversity in music is by looking at how many bands feature a certain instrument. Write a query that describes the number of instruments used by each band.
+##### 1.3) It is important that Drop Table Records has a diversity of different bands signed to its label. We want many artists who represent different styles of music. One way we determine the diversity in music is by looking at how many bands feature a certain instrument. Write a query that describes the number of instruments used by each band.
 [1.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.3%20Table.csv)
 ```sql
 select b.bandname as 'Rockin Rock Band', count(i.instrument) as 'Musical Weapons'
@@ -44,7 +44,7 @@ on b.idband = p.idband
 group by b.idband
 order by count(i.instrument) desc
 ```
-##### 1.4)Write a query that lists the most popular instrument amongst the players.
+##### 1.4) Write a query that lists the most popular instrument amongst the players.
 [1.4 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.4%20Table.csv)
 ```sql
 select (i.instrument) as 'Musical Weapon', count(p.instid) as 'Number of Players'
@@ -101,7 +101,7 @@ values (30, 3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
 insert into band_db.venue (idvenue, vname, city, state, zipcode, seats)
 values(12, 'Twin City Rock House', 'Minneapolis', 'MN', 55414, 2000)
 ```
-##### Which state has the largest amount of seating available (regardless of the number of venues at the state)?
+##### 2.5) Which state has the largest amount of seating available (regardless of the number of venues at the state)?
 [2.5 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.5%20Table.csv)
 ```sql
 select state, seats from band_db.venue where seats = (select max(seats) from band_db.venue)
