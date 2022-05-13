@@ -1,7 +1,14 @@
 # SQL & Database Basics: Final Project
 
 #### [Original Schema](https://github.com/MarkMinia/Project1/blob/main/Dataset/Band)
-- 
+- [Album](https://github.com/MarkMinia/Project1/blob/main/Dataset/Album.csv)
+- [Band](https://github.com/MarkMinia/Project1/blob/main/Dataset/Band.csv)
+- [Gig](https://github.com/MarkMinia/Project1/blob/main/Dataset/Gig.csv)
+- [Instrument](https://github.com/MarkMinia/Project1/blob/main/Dataset/Instrument.csv)
+- [Player](https://github.com/MarkMinia/Project1/blob/main/Dataset/Player.csv)
+- [Venue](https://github.com/MarkMinia/Project1/blob/main/Dataset/Venue.csv)
+
+#### PART 1
 
 ##### Before a band releases a new record, Drop Table Records will work to promote the band and get fans excited for the new record. Write a query that shows bands & their respective albums’ release date in descending order.
 [1.1 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.1%20Table.csv)
@@ -52,6 +59,8 @@ order by count(p.instid) desc
 select ifnull(idalbum, 'N/A') as idalbum, ifnull(idband, 'N/A') as idband, ifnull(albumname, 'N/A') as albumname, ifnull(releasedate, 'N/A') as releasedate
 from band_db.album where albumname is null or releasedate is null 
 ```
+#### PART 2
+
 ##### We need to add more bands to the band table. Here’s a list of the bands we’d like to add: 
 <img src="./Assignment%20Images/Band%20List.PNG" width="25%" height="25%" />
 
@@ -96,6 +105,8 @@ values(12, 'Twin City Rock House', 'Minneapolis', 'MN', 55414, 2000)
 ```sql
 select state, seats from band_db.venue where seats = (select max(seats) from band_db.venue)
 ```
+#### PART 3
+
 ##### Using the Gig table, add the following information
 <img src="./Assignment%20Images/Gig%20List.PNG" width="80%" height="80%" />
 
@@ -140,6 +151,8 @@ join band_db.venue as v
 on g.idvenue = v.idvenue
 select * from band_db.rock_n_roll
 ```
+#### PART 4
+
 ##### Create a stored procedure that lists all of the venues that can handle more than 10,000 guests.
 [4.1 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/4.1%20Table.csv)
 ```sql
