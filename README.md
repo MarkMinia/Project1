@@ -1,5 +1,8 @@
 # SQL & Database Basics: Final Project
 
+#### [Original Schema](https://github.com/MarkMinia/Project1/blob/main/Dataset/Band)
+- 
+
 ##### Before a band releases a new record, Drop Table Records will work to promote the band and get fans excited for the new record. Write a query that shows bands & their respective albums’ release date in descending order.
 [1.1 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.1%20Table.csv)
 ```sql
