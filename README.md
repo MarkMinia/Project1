@@ -58,7 +58,7 @@ insert into band_db.band (idband, aid, bandname)
 values (22, 1, 'Weezer'), (23, 1, 'TLC'), (24, 1, 'Paramore'), (25, 1, 'Blackpink'), (26, 1, 'Vampire Weekend')
 ```
 ##### Using the Player table, add the following values
-<img src="./Assignment%20Images/Player%20List.PNG" width="50%" height="50%"></dl>
+<img src="./Assignment%20Images/Player%20List.PNG" width="65%" height="65%" /><
 
 [2.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.3%20Table.csv)
 ```sql
@@ -94,7 +94,7 @@ values(12, 'Twin City Rock House', 'Minneapolis', 'MN', 55414, 2000)
 select state, seats from band_db.venue where seats = (select max(seats) from band_db.venue)
 ```
 ##### Using the Gig table, add the following information
-<img src="./Assignment%20Images/Gig%20List.PNG" width="50%" height="50%"></dl>
+<img src="./Assignment%20Images/Gig%20List.PNG" width="65%" height="65%" />
 
 [3.2 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/3.2%20Table.csv)
 ```sql
