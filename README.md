@@ -58,7 +58,7 @@ insert into band_db.band (idband, aid, bandname)
 values (22, 1, 'Weezer'), (23, 1, 'TLC'), (24, 1, 'Paramore'), (25, 1, 'Blackpink'), (26, 1, 'Vampire Weekend')
 ```
 ##### Using the Player table, add the following values
-<img src="./Assignment%20Images/Player%20List.PNG" width="65%" height="65%" /><
+<img src="./Assignment%20Images/Player%20List.PNG" width="65%" height="65%" />
 
 [2.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.3%20Table.csv)
 ```sql
@@ -81,7 +81,7 @@ values (30, 3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
 (45, 4, 26, 'Chris', 'Thompson', 'Upper Freehold Township', 'NJ')
 ```
 ##### Drop Table Records has signed a contract with a new venue! A new venue should be added to the venue table.
-<img src="./Assignment%20Images/Venue%20List.PNG" width="25%" height="25%"></dl>
+<img src="./Assignment%20Images/Venue%20List.PNG" width="40%" height="40%" />
 
 [2.4 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.4%20Table.csv)
 ```sql
