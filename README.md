@@ -1,7 +1,7 @@
 # SQL & Database Basics: Final Project
 
 #### [Assignment Module](https://github.com/MarkMinia/Project1/blob/main/SQL%20%26%20Database%20Basics%20-%20Final%20Project%20Tasks.pdf)
-#### [Original Schema](https://github.com/MarkMinia/Project1/blob/main/Dataset/Band)
+#### [Original Schema](https://github.com/MarkMinia/Project1/blob/main/Dataset/band_schema.sql)
 - [Album](https://github.com/MarkMinia/Project1/blob/main/Dataset/Album.csv)
 - [Band](https://github.com/MarkMinia/Project1/blob/main/Dataset/Band.csv)
 - [Gig](https://github.com/MarkMinia/Project1/blob/main/Dataset/Gig.csv)
