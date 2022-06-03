@@ -166,7 +166,7 @@ call band_db.10000_venue ()
 ##### 4.2) Create a stored procedure that lists all of the players that come from a specific state. We want to see (once we run this stored procedure), what bands they are a part of, their full name (in one column), and the state they are from.
 [4.2 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/4.2%20Table.csv)
 ```sql
-REATE PROCEDURE `Band_Player_Search`(in N varchar(60))
+CREATE PROCEDURE `Band_Player_Search`(in N varchar(60))
 BEGIN
 Select b.bandname as 'Rockin Rock Band', concat(p.pfname, ' ',(ifnull(p.plname, ' '))) as 'Player Name', p.homecity, p.homestate 
 from band_db.player as p
