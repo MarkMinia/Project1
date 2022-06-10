@@ -149,6 +149,7 @@ join band_db.gig as g
 on b.idband = g.idband
 join band_db.venue as v
 on g.idvenue = v.idvenue
+
 select * from band_db.rock_n_roll
 ```
 #### PART 4
