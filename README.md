@@ -147,7 +147,7 @@ WHERE gigid = 4
 ##### 3.6) Create a view that will show the band, the dates they will play, the venue they will play at, the number of attendees, and the venue capacity. For this view, also create a column that describes what percentage of the venue capacity was utilized.
 [3.6 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/3.6%20Table.csv)
 ```sql
-CREATE VIEW band_db.rock_n_roll as
+CREATE VIEW band_db.rock_n_roll AS
 SELECT b.bandname AS 'Rockin Rock Band', g.gigdate AS 'Showtime Baby', g.numattendees AS 'Adoring Fans', 
 v.seats AS 'Max Capacity', (g.numattendees/v.seats)*100 AS 'Venue Capacity Usage Percentage'
 FROM band_db.band AS b
@@ -166,7 +166,9 @@ select * from band_db.rock_n_roll
 DELIMITER //
 CREATE PROCEDURE 10000_Venue()
 BEGIN
-SELECT * from band_db.venue where seats > 10000;
+SELECT * 
+FROM band_db.venue 
+WHERE seats > 10000;
 END //
 DELIMITER //
 
