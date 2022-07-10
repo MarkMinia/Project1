@@ -35,30 +35,31 @@ ORDER BY concat(p.pfname, ' ' ,p.plname)
 ##### 1.3) It is important that Drop Table Records has a diversity of different bands signed to its label. We want many artists who represent different styles of music. One way we determine the diversity in music is by looking at how many bands feature a certain instrument. Write a query that describes the number of instruments used by each band.
 [1.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.3%20Table.csv)
 ```sql
-select b.bandname as 'Rockin Rock Band', count(p.instid) as 'Musical Weapons'
-from band_db.instrument as i
-join band_db.player as p
-on i.instid = p.instid
-join band_db.band as b
-on b.idband = p.idband
-group by b.bandname
-order by count(i.instid) desc
+SELECT b.bandname AS 'Rockin Rock Band', count(p.instid) AS 'Musical Weapons'
+from band_db.instrument AS i
+JOIN band_db.player AS p
+ON i.instid = p.instid
+JOIN band_db.band AS b
+ON b.idband = p.idband
+GROUP BY b.bandname
+ORDER BY count(i.instid) DESC
 ```
 ##### 1.4) Write a query that lists the most popular instrument amongst the players.
 [1.4 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.4%20Table.csv)
 ```sql
-select (i.instrument) as 'Musical Weapon', count(p.instid) as 'Number of Players'
-from band_db.instrument as i
-left join band_db.player as p
-on i.instid = p.instid
-group by i.instrument
-order by count(p.instid) desc
+SELECT (i.instrument) AS 'Musical Weapon', count(p.instid) AS 'Number of Players'
+FROM band_db.instrument AS i
+LEFT JOIN band_db.player AS p
+ON i.instid = p.instid
+GROUP BY i.instrument
+ORDER BY count(p.instid) desc
 ```
 ##### 1.5) Write a query that lists any albums that have a missing name and/or missing release dates. 
 [1.5 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.5%20Table.csv)
 ```sql
-select ifnull(idalbum, 'N/A') as idalbum, ifnull(idband, 'N/A') as idband, ifnull(albumname, 'N/A') as albumname, ifnull(releasedate, 'N/A') as releasedate
-from band_db.album where albumname is null or releasedate is null 
+SELECT ifnull(idalbum, 'N/A') AS idalbum, ifnull(idband, 'N/A') AS idband, ifnull(albumname, 'N/A') AS albumname, IFNULL(releasedate, 'N/A') AS releasedate
+FROM band_db.album 
+WHERE albumname IS null OR releasedate IS NULL 
 ```
 #### PART 2
 
@@ -67,16 +68,16 @@ from band_db.album where albumname is null or releasedate is null
 
 [2.1 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.1%20Table.csv)
 ```sql
-insert into band_db.band (aid, bandname)
-values (1, 'Weezer'), (1, 'TLC'), (1, 'Paramore'), (1, 'Blackpink'), (1, 'Vampire Weekend')
+INSERT INTO band_db.band (aid, bandname)
+VALUES (1, 'Weezer'), (1, 'TLC'), (1, 'Paramore'), (1, 'Blackpink'), (1, 'Vampire Weekend')
 ```
 ##### 2.3) Using the Player table, add the following values
 <img src="./Assignment%20Images/Player%20List.PNG" width="80%" height="80%" />
 
 [2.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.3%20Table.csv)
 ```sql
-Insert into band_db.player (instid, idband, pfname, plname, homecity, homestate)
-values (3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
+INSERT INTO band_db.player (instid, idband, pfname, plname, homecity, homestate)
+VALUES (3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
 (1, 22, 'Brian', 'Bell', 'Iowa City', 'Iowa'),
 (4, 22, 'Patrick', 'Wilson', 'Buffalo', 'NY'),
 (2, 22, 'Scott', 'Shriner', 'Toledo', 'OH'),
@@ -98,13 +99,16 @@ values (3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
 
 [2.4 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.4%20Table.csv)
 ```sql
-insert into band_db.venue (vname, city, state, zipcode, seats)
-values('Twin City Rock House', 'Minneapolis', 'MN', 55414, 2000)
+INSERT INTO band_db.venue (vname, city, state, zipcode, seats)
+VALUES ('Twin City Rock House', 'Minneapolis', 'MN', 55414, 2000)
 ```
 ##### 2.5) Which state has the largest amount of seating available (regardless of the number of venues at the state)? GA & TX
 [2.5 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/2.5%20Table.csv)
 ```sql
-select state, seats from band_db.venue where seats = (select max(seats) from band_db.venue)
+SELECT state, seats 
+FROM band_db.venue 
+WHERE seats = (select max(seats) 
+FROM band_db.venue)
 ```
 #### PART 3
 
@@ -113,8 +117,8 @@ select state, seats from band_db.venue where seats = (select max(seats) from ban
 
 [3.2 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/3.2%20Table.csv)
 ```sql
-insert into band_db.gig (idvenue, idband, gigdate, numattendees)
-values (4, 2, '2022-05-05', 19000),
+INSERT INTO band_db.gig (idvenue, idband, gigdate, numattendees)
+VALUES (4, 2, '2022-05-05', 19000),
 (12, 26, '2022-04-15', null),
 (8, 23, '2022-06-07', 18000),
 (2, 22, '2022-07-03', 175)
@@ -122,33 +126,35 @@ values (4, 2, '2022-05-05', 19000),
 ##### 3.3) Are any of the venues oversold? Yes, SAP Center and The River Club
 [3.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/3.3%20Table.csv)
 ```sql
-Select v.vname, v.city, v.state, v.seats, g.numattendees
-from band_db.venue as v
-left join band_db.gig as g
-on v.idvenue = g.idvenue
-where seats < numattendees
+SELECT v.vname, v.city, v.state, v.seats, g.numattendees
+FROM band_db.venue AS v
+LEFT JOIN band_db.gig AS g
+ON v.idvenue = g.idvenue
+WHERE seats < numattendees
 ```
 ##### 3.4) We just got word that Vampire Weekend can expect 1,750 guests. Write a query to update the table accordingly.
 [3.4 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/3.4%20Table.csv)
 ```sql
-update band_db.gig set numattendees = 1750 where gigid = 2
+UPDATE band_db.gig set numattendees = 1750 
+WHERE gigid = 2
 ```
 ##### 3.5) We just got an update that the expected number of attendees at the River Club for Weezer will only have 125 guests. Write a query to update the table accordingly.
 [3.5 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/3.5%20Table.csv)
 ```sql
-update band_db.gig set numattendees = 125 where gigid = 4
+UPDATE band_db.gig set numattendees = 125 
+WHERE gigid = 4
 ```
 ##### 3.6) Create a view that will show the band, the dates they will play, the venue they will play at, the number of attendees, and the venue capacity. For this view, also create a column that describes what percentage of the venue capacity was utilized.
 [3.6 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/3.6%20Table.csv)
 ```sql
-create view band_db.rock_n_roll as
-select b.bandname as 'Rockin Rock Band', g.gigdate as 'Showtime Baby', g.numattendees as 'Adoring Fans', 
-v.seats as 'Max Capacity', (g.numattendees/v.seats)*100 as 'Venue Capacity Usage Percentage'
-from band_db.band as b
-join band_db.gig as g
-on b.idband = g.idband
-join band_db.venue as v
-on g.idvenue = v.idvenue
+CREATE VIEW band_db.rock_n_roll as
+SELECT b.bandname AS 'Rockin Rock Band', g.gigdate AS 'Showtime Baby', g.numattendees AS 'Adoring Fans', 
+v.seats AS 'Max Capacity', (g.numattendees/v.seats)*100 AS 'Venue Capacity Usage Percentage'
+FROM band_db.band AS b
+JOIN band_db.gig AS g
+ON b.idband = g.idband
+JOIN band_db.venue AS v
+ON g.idvenue = v.idvenue
 
 select * from band_db.rock_n_roll
 ```
@@ -160,11 +166,11 @@ select * from band_db.rock_n_roll
 DELIMITER //
 CREATE PROCEDURE 10000_Venue()
 BEGIN
-Select * from band_db.venue where seats > 10000;
+SELECT * from band_db.venue where seats > 10000;
 END //
 DELIMITER //
 
-call 10000_venue()
+CALL 10000_venue()
 ```
 ##### 4.2) Create a stored procedure that lists all of the players that come from a specific state. We want to see (once we run this stored procedure), what bands they are a part of, their full name (in one column), and the state they are from.
 [4.2 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/4.2%20Table.csv)
@@ -172,13 +178,13 @@ call 10000_venue()
 DELIMITER //
 CREATE PROCEDURE band_player_search(in N varchar(60))
 BEGIN
-Select b.bandname as 'Rockin Rock Band', concat(p.pfname, ' ',(ifnull(p.plname, ' '))) as 'Player Name', p.homecity, p.homestate 
-from band_db.player as p
-left join band_db.band as b 
-on p.idband = b.idband
-where N in (p.pfname, p.plname);
+SELECT b.bandname AS 'Rockin Rock Band', concat(p.pfname, ' ',(ifnull(p.plname, ' '))) AS 'Player Name', p.homecity, p.homestate 
+FROM band_db.player AS p
+LEFT JOIN band_db.band AS b 
+ON p.idband = b.idband
+WHERE N IN (p.pfname, p.plname);
 END //
 DELIMITER //
 
-call band_player_search('eminem')
+CALL band_player_search('eminem')
 ```
