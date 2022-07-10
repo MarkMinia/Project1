@@ -52,14 +52,14 @@ FROM band_db.instrument AS i
 LEFT JOIN band_db.player AS p
 ON i.instid = p.instid
 GROUP BY i.instrument
-ORDER BY count(p.instid) desc
+ORDER BY count(p.instid) DESC
 ```
 ##### 1.5) Write a query that lists any albums that have a missing name and/or missing release dates. 
 [1.5 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.5%20Table.csv)
 ```sql
 SELECT ifnull(idalbum, 'N/A') AS idalbum, ifnull(idband, 'N/A') AS idband, ifnull(albumname, 'N/A') AS albumname, IFNULL(releasedate, 'N/A') AS releasedate
 FROM band_db.album 
-WHERE albumname IS null OR releasedate IS NULL 
+WHERE albumname IS NULL OR releasedate IS NULL 
 ```
 #### PART 2
 
@@ -86,10 +86,10 @@ VALUES (3, 22, 'Rivers', 'Cuomo', 'Rochester', 'NY'),
 (3, 24, 'Hayley', 'Williams', 'Franklin', 'TN'),
 (1, 24, 'Taylor', 'York', 'Nashville', 'TN'),
 (4, 24, 'Zac', 'Farro', 'Voorhees Township', 'NJ'),
-(3, 25, 'Jisoo', 'Kim', null, 'South Korea'),
-(3, 25, 'Jennie', 'Kim', null, 'South Korea'),
-(3, 25, 'Roseanne', 'Park', null, 'New Zealand'),
-(3, 25, 'Lisa', 'Manoban', null, 'Thailand'),
+(3, 25, 'Jisoo', 'Kim', NULL , 'South Korea'),
+(3, 25, 'Jennie', 'Kim', NULL , 'South Korea'),
+(3, 25, 'Roseanne', 'Park', NULL , 'New Zealand'),
+(3, 25, 'Lisa', 'Manoban', NULL , 'Thailand'),
 (3, 26, 'Ezra', 'Koenig', 'New York', 'NY'),
 (2, 26, 'Chris', 'Balo', 'Bronxville', 'NY'),
 (4, 26, 'Chris', 'Thompson', 'Upper Freehold Township', 'NJ')
@@ -119,7 +119,7 @@ FROM band_db.venue)
 ```sql
 INSERT INTO band_db.gig (idvenue, idband, gigdate, numattendees)
 VALUES (4, 2, '2022-05-05', 19000),
-(12, 26, '2022-04-15', null),
+(12, 26, '2022-04-15', NULL ),
 (8, 23, '2022-06-07', 18000),
 (2, 22, '2022-07-03', 175)
 ```
