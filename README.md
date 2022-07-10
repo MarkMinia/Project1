@@ -14,23 +14,23 @@
 ##### 1.1) Before a band releases a new record, Drop Table Records will work to promote the band and get fans excited for the new record. Write a query that shows bands & their respective albums’ release date in descending order.
 [1.1 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.1%20Table.csv)
 ```sql
-select b.bandname as 'Rockin Rock Bands', a.albumname as 'Awesome Album Names', a.releasedate as 'Released to the World'
-from band_db.band as b
-left join band_db.album as a
-on b.idband = a.idband
-order by a.releasedate desc
+SELECT b.bandname AS 'Rockin Rock Bands', a.albumname AS 'Awesome Album Names', a.releasedate AS 'Released to the World'
+FROM band_db.band AS b
+LEFT JOIN band_db.album AS a
+ON b.idband = a.idband
+ORDER BY a.releasedate desc
 ```
 ##### 1.2) Drop Table Records also sends bands to play at different venues or events. Some venues request bands that feature certain instruments. Write a query that shows all of the players that utilize drums along with the bands that they are a part of. You should only have one column that shows the full player name
 [1.2 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.2%20Table.csv)
 ```sql
-select b.bandname as 'Rockin Rock Band', concat(p.pfname, ' ' ,p.plname) as 'Band Player', i.instrument as 'Musical Weapon'
-from band_db.instrument as i
-join band_db.player as p
-on i.instid = p.instid
-left join band_db.band as b
-on p.idband = b.idband
-where instrument = 'drums'
-order by concat(p.pfname, ' ' ,p.plname)
+SELECT b.bandname AS 'Rockin Rock Band', concat(p.pfname, ' ' ,p.plname) AS 'Band Player', i.instrument AS 'Musical Weapon'
+from band_db.instrument AS i
+JOIN band_db.player AS p
+ON i.instid = p.instid
+LEFT JOIN band_db.band AS b
+ON p.idband = b.idband
+WHERE instrument = 'drums'
+ORDER BY concat(p.pfname, ' ' ,p.plname)
 ```
 ##### 1.3) It is important that Drop Table Records has a diversity of different bands signed to its label. We want many artists who represent different styles of music. One way we determine the diversity in music is by looking at how many bands feature a certain instrument. Write a query that describes the number of instruments used by each band.
 [1.3 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/1.3%20Table.csv)
@@ -157,24 +157,28 @@ select * from band_db.rock_n_roll
 ##### 4.1) Create a stored procedure that lists all of the venues that can handle more than 10,000 guests.
 [4.1 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/4.1%20Table.csv)
 ```sql
-CREATE PROCEDURE `10000_Venue`()
+DELIMITER //
+CREATE PROCEDURE 10000_Venue()
 BEGIN
 Select * from band_db.venue where seats > 10000;
-END;
+END //
+DELIMITER //
 
-call band_db.10000_venue ()
+call 10000_venue()
 ```
 ##### 4.2) Create a stored procedure that lists all of the players that come from a specific state. We want to see (once we run this stored procedure), what bands they are a part of, their full name (in one column), and the state they are from.
 [4.2 Result Grid](https://github.com/MarkMinia/Project1/blob/main/SQL%20Tables/4.2%20Table.csv)
 ```sql
-CREATE PROCEDURE `Band_Player_Search`(in N varchar(60))
+DELIMITER //
+CREATE PROCEDURE band_player_search(in N varchar(60))
 BEGIN
 Select b.bandname as 'Rockin Rock Band', concat(p.pfname, ' ',(ifnull(p.plname, ' '))) as 'Player Name', p.homecity, p.homestate 
 from band_db.player as p
 left join band_db.band as b 
 on p.idband = b.idband
 where N in (p.pfname, p.plname);
-END;
+END //
+DELIMITER //
 
-call band_db.band_player_search ('eminem')
+call band_player_search('eminem')
 ```
